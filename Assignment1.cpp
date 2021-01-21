@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cmath>
+#include <vector>
 
 #include "Triangle.h"
 #include "Trapezoid.h"
@@ -11,6 +11,11 @@ using namespace std;
 void displayWelcome(); 
 
 int main() {
+	
+	// adding sequence containers of each object type
+	vector<Triangle> triVec;
+	vector<Trapezoid> trapVec;
+	vector<Rectangle> rectVec;
 
 	// main program loop
 	bool runAgain;
@@ -33,8 +38,10 @@ int main() {
 			cout << "Enter triangle side 2: ";
 			cin >> side2;
 
-			// Create a new triangle object
+			// Create a new triangle object and add it to the collection
 			Triangle triangle(side1, side2);
+			triVec.push_back(triangle);
+			
 			double hypot = triangle.getHypotenuse();
 			if (hypot > 0)
 				cout << "\nThe hypotenuse of the created right triangle is " << hypot << "\n";
@@ -53,8 +60,10 @@ int main() {
 			cout << "Enter the trapezoid's height: ";
 			cin >> height;
 
-			// Create a new trapezoid object
+			// Create a new trapezoid object and add it to the collection
 			Trapezoid trapezoid(base1, base2, height);
+			trapVec.push_back(trapezoid);
+			
 			double area = trapezoid.getArea();
 			if (area > 0)
 				cout << "\nThe area of the created trapezoid is " << area << "\n";
@@ -73,8 +82,10 @@ int main() {
 			cout << "Enter the shape's depth: ";
 			cin >> depth;
 
-			// Create a new rectangle object
+			// Create a new rectangle object and add it to the collection
 			Rectangle rectangle(length, height, depth);
+			rectVec.push_back(rectangle);
+			
 			double volume = rectangle.getVolume();
 			if (volume > 0)
 				cout << "\nThe volume of the rectangle is " << volume << "\n";
@@ -82,8 +93,27 @@ int main() {
 				cout << "\nSupplied dimensions cannot be used to make a rectangle!\n";
 			break;
 		}
+		case 4: 
+		{
+			cout << "\n----------- Triangles -----------\n";
+			cout << "\nTriangle Collection Size: " << triVec.size();
+			for (Triangle tri : triVec)
+				cout << "\nTriangle Hypotenuse: " << tri.getHypotenuse() << "\n";
+
+			cout << "\n----------- Trapezoids -----------\n";
+			cout << "\nTrapezoid Collection Size: " << trapVec.size();
+			for (Trapezoid trap : trapVec)
+				cout << "\nTrapezoid Area: " << trap.getArea() << "\n";
+
+			cout << "\n----------- Rectangles -----------\n";
+			cout << "\nRectangle Collection Size: " << rectVec.size();
+			for (Rectangle rect : rectVec)
+				cout << "\nRectangle Volume: " << rect.getVolume() << "\n";
+			break; 
+		}		
 		default:
 			cout << "\nUnknown selection!";
+			break;
 		} // end switch
 
 		// check for another run
@@ -102,6 +132,6 @@ void displayWelcome() {
 	cout << "\n|=======================|\n";
 	cout << "|~~~~ Shape Creator ~~~~|\n";
 	cout << "|=======================|\n";
-	cout << "\nSelect a shape to create:\n \n1) Triangle\n2) Trapezoid\n3) Rectangle\n";
+	cout << "\nMake a selection:\n \n1) Triangle\n2) Trapezoid\n3) Rectangle\n4) Browse collection\n";
 	cout << "\nSelection: ";
 }
