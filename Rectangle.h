@@ -5,10 +5,8 @@ class Rectangle {
 private:
 	double base, height, depth;
 	bool isValidShape() { // check for impossible dimensions
-		if (base <= 0 || height <= 0 || depth <= 0)
-			return false;
-		else
-			return true;
+		if (base <= 0 || height <= 0 || depth <= 0) return false;
+		return true;
 	}
 public:
 	Rectangle(double base, double height, double depth) { // parameterized constructor
@@ -19,9 +17,7 @@ public:
 	double getVolume() { // exposed public method to calculate volume
 		if (isValidShape())
 			return base * height * depth;
-		else
-			return 0;
+		return 0;
 	}
 };
-
 #endif
