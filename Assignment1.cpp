@@ -1,11 +1,3 @@
-/*
-Author: David Schreur
-Class: CIS227-6800
-Professor Joseph Carmon
-Assignment 0 - Shape Calculations
-Date: 1/18/2020
-*/
-
 #include <iostream>
 #include <cmath>
 
