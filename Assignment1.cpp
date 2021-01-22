@@ -13,10 +13,8 @@ double checkInput(string prompt);
 
 int main() {
 
-	// adding sequence containers of each object type
-	vector<Triangle> triVec;
-	vector<Trapezoid> trapVec;
-	vector<Rectangle> rectVec;
+	// sequence container of base object pointers.
+	vector<Shape*> shapeVec;
 
 	// main program loop
 	bool runAgain;
@@ -38,7 +36,7 @@ int main() {
 
 			// Create a new triangle object and add it to the collection
 			Triangle triangle(side1, side2);
-			triVec.push_back(triangle);
+			shapeVec.push_back(&triangle); // insert obj ref. This is so counterintuitive compared to C#.
 
 			double hypot = triangle.getHypotenuse();
 			if (hypot > 0)
@@ -57,7 +55,7 @@ int main() {
 
 			// Create a new trapezoid object and add it to the collection
 			Trapezoid trapezoid(base1, base2, height);
-			trapVec.push_back(trapezoid);
+			shapeVec.push_back(&trapezoid);
 
 			double area = trapezoid.getArea();
 			if (area > 0)
@@ -76,7 +74,7 @@ int main() {
 
 			// Create a new rectangle object and add it to the collection
 			Rectangle rectangle(length, height, depth);
-			rectVec.push_back(rectangle);
+			shapeVec.push_back(&rectangle);
 
 			double volume = rectangle.getVolume();
 			if (volume > 0)
@@ -87,20 +85,10 @@ int main() {
 		}
 		case 4:
 		{
-			cout << "\n----------- Triangles -----------\n";
-			cout << "\nTriangle Collection Size: " << triVec.size();
-			for (Triangle tri : triVec)
-				cout << "\nTriangle Hypotenuse: " << tri.getHypotenuse() << "\n";
-
-			cout << "\n----------- Trapezoids -----------\n";
-			cout << "\nTrapezoid Collection Size: " << trapVec.size();
-			for (Trapezoid trap : trapVec)
-				cout << "\nTrapezoid Area: " << trap.getArea() << "\n";
-
-			cout << "\n----------- Rectangles -----------\n";
-			cout << "\nRectangle Collection Size: " << rectVec.size();
-			for (Rectangle rect : rectVec)
-				cout << "\nRectangle Volume: " << rect.getVolume() << "\n";
+			cout << "\n----------- Shapes -----------\n";
+			cout << "\nShape Collection Size: " << shapeVec.size() << "\n";
+			for (Shape* shape : shapeVec)
+				shape->printInfo(); // polymorphic call to derived implementation
 			break;
 		}
 		default:

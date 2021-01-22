@@ -1,14 +1,14 @@
 #ifndef _TRAPEZOID
 #define _TRAPEZOID
 
-class Trapezoid {
+#include <iostream>
+#include "Shape.h"
+
+using namespace std;
+
+class Trapezoid : public Shape {
 private:
 	double base1, base2, height;
-	bool isValidShape() { // check for impossible dimensions
-		if (base1 <= 0 || base2 <= 0 || height <= 0) 
-			return false;
-		return true;
-	}
 public:
 	Trapezoid(double base1, double base2, double height) { // parameterized constructor
 		this->base1 = base1;
@@ -16,9 +16,13 @@ public:
 		this->height = height;
 	}
 	double getArea() { // exposed public method to calculate area
-		if (isValidShape())
+		if (isValidShape(base1, base2, height))
 			return (0.5) * (base1 + base2) * height;
 		return 0;
+	}
+	void printInfo() { // override base class 
+		cout << "\nObject Type: Trapezoid";
+		cout << "\nArea: " << getArea();
 	}
 };
 #endif
