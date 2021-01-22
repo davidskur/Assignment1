@@ -8,10 +8,11 @@
 using namespace std;
 
 // function declaration
-void displayWelcome(); 
+void displayWelcome();
+double checkInput(string prompt);
 
 int main() {
-	
+
 	// adding sequence containers of each object type
 	vector<Triangle> triVec;
 	vector<Trapezoid> trapVec;
@@ -33,15 +34,13 @@ int main() {
 		{
 			double side1, side2;
 			cout << "\n--- Calculate a Hypotenuse ---\n";
-			cout << "\nEnter triangle side 1: ";
-			cin >> side1;
-			cout << "Enter triangle side 2: ";
-			cin >> side2;
+			side1 = checkInput("\nEnter triangle side 1: ");
+			side2 = checkInput("Enter triangle side 2: ");
 
 			// Create a new triangle object and add it to the collection
 			Triangle triangle(side1, side2);
 			triVec.push_back(triangle);
-			
+
 			double hypot = triangle.getHypotenuse();
 			if (hypot > 0)
 				cout << "\nThe hypotenuse of the created right triangle is " << hypot << "\n";
@@ -53,17 +52,14 @@ int main() {
 		{
 			double base1, base2, height;
 			cout << "\n--- Calculate Trapezoid Area---\n";
-			cout << "\nEnter base length: ";
-			cin >> base1;
-			cout << "Enter a parallel base length: ";
-			cin >> base2;
-			cout << "Enter the trapezoid's height: ";
-			cin >> height;
+			base1 = checkInput("\nEnter base length: ");
+			base2 = checkInput("Enter a parallel base length: ");
+			height = checkInput("Enter the trapezoid's height: ");
 
 			// Create a new trapezoid object and add it to the collection
 			Trapezoid trapezoid(base1, base2, height);
 			trapVec.push_back(trapezoid);
-			
+
 			double area = trapezoid.getArea();
 			if (area > 0)
 				cout << "\nThe area of the created trapezoid is " << area << "\n";
@@ -75,17 +71,14 @@ int main() {
 		{
 			double length, height, depth;
 			cout << "\n--- Calculate Rectangle Volume---\n";
-			cout << "\nEnter the shape's length: ";
-			cin >> length;
-			cout << "Enter the shape's height: ";
-			cin >> height;
-			cout << "Enter the shape's depth: ";
-			cin >> depth;
+			length = checkInput("\nEnter the shape's length: ");
+			height = checkInput("Enter the shape's height: ");
+			depth = checkInput("Enter the shape's depth: ");
 
 			// Create a new rectangle object and add it to the collection
 			Rectangle rectangle(length, height, depth);
 			rectVec.push_back(rectangle);
-			
+
 			double volume = rectangle.getVolume();
 			if (volume > 0)
 				cout << "\nThe volume of the rectangle is " << volume << "\n";
@@ -93,7 +86,7 @@ int main() {
 				cout << "\nSupplied dimensions cannot be used to make a rectangle!\n";
 			break;
 		}
-		case 4: 
+		case 4:
 		{
 			cout << "\n----------- Triangles -----------\n";
 			cout << "\nTriangle Collection Size: " << triVec.size();
@@ -109,8 +102,8 @@ int main() {
 			cout << "\nRectangle Collection Size: " << rectVec.size();
 			for (Rectangle rect : rectVec)
 				cout << "\nRectangle Volume: " << rect.getVolume() << "\n";
-			break; 
-		}		
+			break;
+		}
 		default:
 			cout << "\nUnknown selection!";
 			break;
@@ -127,6 +120,13 @@ int main() {
 	return 0; // end main
 }
 
+// functions
+double checkInput(string prompt) {
+	string input;
+	cout << prompt;
+	cin >> input;
+	return strtod(input.c_str(), NULL); // strtod doesn't throw exceptions
+}
 void displayWelcome() {
 
 	cout << "\n|=======================|\n";
