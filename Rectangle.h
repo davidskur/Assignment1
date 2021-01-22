@@ -22,7 +22,7 @@ public:
 	}
 	void printInfo() { // override base class 
 		cout << "\nObject Type: Rectangle";
-		cout << "\nVolume: " << getVolume();
+		cout << "\nVolume: " << getVolume() << "\n";
 	}
 };
 #endif
