@@ -25,8 +25,7 @@ int main() {
 		displayWelcome(); // for readability
 
 		// get user input
-		int selection;
-		cin >> selection;
+		int selection = checkInput("\nSelection: "); // possible data loss is acceptable here (double -> int)
 
 		// decision logic
 		switch (selection) {
@@ -133,5 +132,4 @@ void displayWelcome() {
 	cout << "|~~~~ Shape Creator ~~~~|\n";
 	cout << "|=======================|\n";
 	cout << "\nMake a selection:\n \n1) Triangle\n2) Trapezoid\n3) Rectangle\n4) Browse collection\n";
-	cout << "\nSelection: ";
 }
