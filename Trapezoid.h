@@ -22,7 +22,7 @@ public:
 	}
 	void printInfo() { // override base class 
 		cout << "\nObject Type: Trapezoid";
-		cout << "\nArea: " << getArea();
+		cout << "\nArea: " << getArea() << "\n";
 	}
 };
 #endif
