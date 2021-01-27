@@ -1,3 +1,15 @@
+/*
+Authors:
+	-David Schreur
+	-Cody Rockwell
+	-Travis Holzgen
+
+Class: CIS227-6800
+Assignment 1: Portable .h and .cpp Files
+Professor Joseph Carmon
+Date: 1/27/21
+*/
+
 #include <iostream>
 #include <vector>
 
@@ -108,7 +120,7 @@ int main() {
 			cout << "\n----------- Shapes -----------" << endl;
 			cout << "\nShape Collection Size: " << shapeContainer.size() << endl;
 			for (Shape* shape : shapeContainer) // also could use (auto element : shapeContainer)
-				shape->PrintInfo(); // polymorphic call to derived implementation
+				cout << shape->GetInfo() << endl; // polymorphic call to derived implementation
 			break;
 		}
 		case 6:
