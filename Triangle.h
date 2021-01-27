@@ -8,23 +8,19 @@ using namespace std;
 
 class Triangle : public Shape {
 private:
-	double side1, side2;
-	bool isValidShape(double dim1, double dim2) { // override base class implementation
-		if (side1 <= 0 || side2 <= 0) return false;
-		return true;
-	}
+	double dblSide1, dblSide2;
 public:
-	Triangle(double side1, double side2) { // parameterized constructor
-		this->side1 = side1;
-		this->side2 = side2;
+	Triangle(double dblSide1, double dblSide2) { // parameterized constructor
+		this->dblSide1 = dblSide1;
+		this->dblSide2 = dblSide2;
 	}
-	double getHypotenuse() { // exposed public method to calculate hypotenuse
-		if (isValidShape(side1, side2)) return hypot(side1, side2);
+	double GetHypotenuse() { // exposed public method to calculate hypotenuse
+		if (IsValidShape(dblSide1, dblSide2, 1)) return hypot(dblSide1, dblSide2);
 		return 0;
 	}
-	void printInfo() { // override base class 
+	void PrintInfo() { // override base class implemenation
 		cout << "\nObject Type: Triangle";
-		cout << "\nHypotenuse: " << getHypotenuse() << "\n";
+		cout << "\nHypotenuse: " << GetHypotenuse() << "\n";
 	}
 };
 #endif
