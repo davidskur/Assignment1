@@ -111,10 +111,9 @@ int main() {
 			break;
 		}
 		case 6:
-		{
 			cout << "\nHave a nice day!";
 			return 0; // could also #include <cstdlib> and call exit(0);
-		}
+
 		default:
 			cout << "\nUnknown selection!";
 			break;
