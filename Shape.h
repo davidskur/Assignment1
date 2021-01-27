@@ -6,14 +6,14 @@ using namespace std;
 // abstract base class
 class Shape {
 private:
-	double dimension1, dimension2, dimension3;
+	double dblDimension1, dblDimension2, dblDimension3;
 public:
-	virtual bool isValidShape(double dim1, double dim2, double dim3) { // check for impossible dimensions
-		if (dim1 <= 0 || dim2 <= 0 || dim3 <= 0)
+	virtual bool IsValidShape(double dblDimension1, double dblDimension2, double dblDimension3) { // check for impossible dimensions
+		if (dblDimension1 <= 0 || dblDimension2 <= 0 || dblDimension3 <= 0)
 			return false;
 		return true;
 	}
-	virtual void printInfo() {
+	virtual void PrintInfo() {
 		cout << "\nObject Type: Basic Shape";
 		cout << "\nDimensions: None";
 	}
