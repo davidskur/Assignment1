@@ -35,13 +35,12 @@ int main() {
 			dblSide1 = CheckInput("\nEnter triangle side 1: ");
 			dblSide2 = CheckInput("Enter triangle side 2: ");
 
-			// Create a new triangle object and add it to the collection. 
-			// Note: It took me a while to figure out correct pointer usage. 
-			// Couldn't initially figure out why multiple objects kept returning the same value from the polymorphic PrintInfo() call.
+			//Create a new triangle object and add it to the collection. 
+			//Cool Feature Note: I could construct the object in place like so: shapeContainer.push_back(Triangle(dblSide1, dblSide2));
 			Triangle* triangle = new Triangle(dblSide1, dblSide2);
 			shapeContainer.push_back(triangle); // insert obj
 
-			double dblHypotenuse = triangle->GetHypotenuse();
+			double dblHypotenuse = triangle->GetHypotenuse(); // need to use arrow operator because I'm dealing with pointers
 			if (dblHypotenuse > 0)
 				cout << "\nThe hypotenuse of the created right triangle is " << dblHypotenuse << "\n";
 			else
@@ -117,7 +116,7 @@ int main() {
 			return 0; // could also #include <cstdlib> and call exit(0);
 
 		default:
-			cout << "\nUnknown selection!";
+			cout << "\nUnknown input! Please try another selection.";
 			break;
 		} // end switch
 
