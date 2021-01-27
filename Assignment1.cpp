@@ -35,11 +35,13 @@ int main() {
 			dblSide1 = CheckInput("\nEnter triangle side 1: ");
 			dblSide2 = CheckInput("Enter triangle side 2: ");
 
-			// Create a new triangle object and add it to the collection
-			Triangle triangle(dblSide1, dblSide2);
-			shapeContainer.push_back(&triangle); // insert obj ref.
+			// Create a new triangle object and add it to the collection. 
+			// Note: It took me a while to figure out correct pointer usage. 
+			// Couldn't initially figure out why multiple objects kept returning the same value from the polymorphic PrintInfo() call.
+			Triangle* triangle = new Triangle(dblSide1, dblSide2);
+			shapeContainer.push_back(triangle); // insert obj
 
-			double dblHypotenuse = triangle.GetHypotenuse();
+			double dblHypotenuse = triangle->GetHypotenuse();
 			if (dblHypotenuse > 0)
 				cout << "\nThe hypotenuse of the created right triangle is " << dblHypotenuse << "\n";
 			else
@@ -55,10 +57,10 @@ int main() {
 			dblHeight = CheckInput("Enter the trapezoid's height: ");
 
 			// Create a new trapezoid object and add it to the collection
-			Trapezoid trapezoid(dblBase1, dblBase2, dblHeight);
-			shapeContainer.push_back(&trapezoid);
+			Trapezoid* trapezoid = new Trapezoid(dblBase1, dblBase2, dblHeight);
+			shapeContainer.push_back(trapezoid);
 
-			double dblArea = trapezoid.GetArea();
+			double dblArea = trapezoid->GetArea();
 			if (dblArea > 0)
 				cout << "\nThe area of the created trapezoid is " << dblArea << "\n";
 			else
@@ -73,10 +75,10 @@ int main() {
 			dblHeight = CheckInput("Enter the shape's height: ");
 
 			// Create a new rectangle object and add it to the collection
-			Rectangle rectangle(dblLength, dblHeight);
-			shapeContainer.push_back(&rectangle);
+			Rectangle* rectangle = new Rectangle(dblLength, dblHeight);
+			shapeContainer.push_back(rectangle);
 
-			double dblVolume = rectangle.GetArea();
+			double dblVolume = rectangle->GetArea();
 			if (dblVolume > 0)
 				cout << "\nThe area of the rectangle is " << dblVolume << "\n";
 			else
@@ -92,10 +94,10 @@ int main() {
 			dblDepth = CheckInput("Enter the shape's depth: ");
 
 			// Create a new hexahedron object and add it to the collection
-			Hexahedron hexahedron(dblLength, dblHeight, dblDepth);
-			shapeContainer.push_back(&hexahedron);
+			Hexahedron* hexahedron = new Hexahedron(dblLength, dblHeight, dblDepth);
+			shapeContainer.push_back(hexahedron);
 
-			double dblVolume = hexahedron.GetVolume();
+			double dblVolume = hexahedron->GetVolume();
 			if (dblVolume > 0)
 				cout << "\nThe volume of the hexahedron is " << dblVolume << "\n";
 			else
@@ -106,7 +108,7 @@ int main() {
 		{
 			cout << "\n----------- Shapes -----------\n";
 			cout << "\nShape Collection Size: " << shapeContainer.size() << "\n";
-			for (Shape* shape : shapeContainer)
+			for (Shape* shape : shapeContainer) // also could use (auto element : shapeContainer)
 				shape->PrintInfo(); // polymorphic call to derived implementation
 			break;
 		}
