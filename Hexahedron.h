@@ -1,6 +1,7 @@
 #ifndef _HEXAHEDRON
 #define _HEXAHEDRON
 
+#include <string>
 #include "Shape.h"
 
 using namespace std;
@@ -19,9 +20,8 @@ public:
 			return dblBase * dblHeight * dblDepth;
 		return 0;
 	}
-	void PrintInfo() { // override base class 
-		cout << "\nObject Type: Hexahedron";
-		cout << "\nVolume: " << GetVolume() << "\n";
+	string GetInfo() { // override base class 
+		return "\nObject Type: Hexahedron\nVolume: " + to_string(GetVolume());
 	}
 };
 #endif
