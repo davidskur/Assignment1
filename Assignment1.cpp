@@ -31,7 +31,7 @@ int main() {
 		case 1: // triangle
 		{
 			double dblSide1, dblSide2;
-			cout << "\n--- Calculate a Hypotenuse ---\n";
+			cout << "\n--- Calculate a Hypotenuse ---" << endl;
 			dblSide1 = CheckInput("\nEnter triangle side 1: ");
 			dblSide2 = CheckInput("Enter triangle side 2: ");
 
@@ -42,7 +42,7 @@ int main() {
 
 			double dblHypotenuse = triangle->GetHypotenuse(); // need to use arrow operator because I'm dealing with pointers
 			if (dblHypotenuse > 0)
-				cout << "\nThe hypotenuse of the created right triangle is " << dblHypotenuse << "\n";
+				cout << "\nThe hypotenuse of the created right triangle is " << dblHypotenuse << endl;
 			else
 				cout << "\nSupplied dimensions do NOT a triangle make!";
 			break;
@@ -50,7 +50,7 @@ int main() {
 		case 2: // trapezoid
 		{
 			double dblBase1, dblBase2, dblHeight;
-			cout << "\n--- Calculate Trapezoid Area---\n";
+			cout << "\n--- Calculate Trapezoid Area---" << endl;
 			dblBase1 = CheckInput("\nEnter base length: ");
 			dblBase2 = CheckInput("Enter a parallel base length: ");
 			dblHeight = CheckInput("Enter the trapezoid's height: ");
@@ -61,15 +61,15 @@ int main() {
 
 			double dblArea = trapezoid->GetArea();
 			if (dblArea > 0)
-				cout << "\nThe area of the created trapezoid is " << dblArea << "\n";
+				cout << "\nThe area of the created trapezoid is " << dblArea << endl;
 			else
-				cout << "\nSupplied dimensions cannot be used to make a trapezoid!\n";
+				cout << "\nSupplied dimensions cannot be used to make a trapezoid!" << endl;
 			break;
 		}
 		case 3: // Regular rectangle
 		{
 			double dblLength, dblHeight;
-			cout << "\n--- Calculate Rectangle Area ---\n";
+			cout << "\n--- Calculate Rectangle Area ---" << endl;
 			dblLength = CheckInput("\nEnter the shape's length: ");
 			dblHeight = CheckInput("Enter the shape's height: ");
 
@@ -79,15 +79,15 @@ int main() {
 
 			double dblVolume = rectangle->GetArea();
 			if (dblVolume > 0)
-				cout << "\nThe area of the rectangle is " << dblVolume << "\n";
+				cout << "\nThe area of the rectangle is " << dblVolume << endl;
 			else
-				cout << "\nSupplied dimensions cannot be used to make a rectangle!\n";
+				cout << "\nSupplied dimensions cannot be used to make a rectangle!" << endl;
 			break;
 		}
 		case 4: // Rectangular hexahedron (cuboid). Assuming he meant 'volume' in the requirements given that it's a 3D figure.
 		{
 			double dblLength, dblHeight, dblDepth;
-			cout << "\n--- Calculate Rectangular Hexahedron Volume ---\n";
+			cout << "\n--- Calculate Rectangular Hexahedron Volume ---" << endl;
 			dblLength = CheckInput("\nEnter the shape's length: ");
 			dblHeight = CheckInput("Enter the shape's height: ");
 			dblDepth = CheckInput("Enter the shape's depth: ");
@@ -98,15 +98,15 @@ int main() {
 
 			double dblVolume = hexahedron->GetVolume();
 			if (dblVolume > 0)
-				cout << "\nThe volume of the hexahedron is " << dblVolume << "\n";
+				cout << "\nThe volume of the hexahedron is " << dblVolume << endl;
 			else
-				cout << "\nSupplied dimensions cannot be used to make a hexahedron!\n";
+				cout << "\nSupplied dimensions cannot be used to make a hexahedron!" << endl;
 			break;
 		}
 		case 5:
 		{
-			cout << "\n----------- Shapes -----------\n";
-			cout << "\nShape Collection Size: " << shapeContainer.size() << "\n";
+			cout << "\n----------- Shapes -----------" << endl;
+			cout << "\nShape Collection Size: " << shapeContainer.size() << endl;
 			for (Shape* shape : shapeContainer) // also could use (auto element : shapeContainer)
 				shape->PrintInfo(); // polymorphic call to derived implementation
 			break;
@@ -138,8 +138,8 @@ double CheckInput(string strPrompt) {
 	return strtod(strInput.c_str(), NULL); // strtod doesn't throw exceptions
 }
 void DisplayWelcome() {
-	cout << "\n|=======================|\n";
-	cout << "|~~~~ Shape Creator ~~~~|\n";
-	cout << "|=======================|\n";
-	cout << "\nMake a selection:\n \n1) Triangle\n2) Trapezoid\n3) Rectangle\n4) Rectangular Hexahedron (Cuboid)\n5) Browse Collection\n6) Exit\n";
+	cout << "\n|=======================|" << endl;
+	cout << "|~~~~ Shape Creator ~~~~|" << endl;
+	cout << "|=======================|" << endl;
+	cout << "\nMake a selection:\n \n1) Triangle\n2) Trapezoid\n3) Rectangle\n4) Rectangular Hexahedron (Cuboid)\n5) Browse Collection\n6) Exit" << endl;
 }
