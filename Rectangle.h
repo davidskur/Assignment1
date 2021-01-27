@@ -1,6 +1,7 @@
 #ifndef _RECTANGLE
 #define _RECTANGLE
 
+#include <string>
 #include "Shape.h"
 
 using namespace std;
@@ -18,9 +19,8 @@ public:
 			return dblBase * dblHeight;
 		return 0;
 	}
-	void PrintInfo() { // override base class implemenation
-		cout << "\nObject Type: Rectangle";
-		cout << "\nVolume: " << GetArea() << "\n";
+	string GetInfo() { // override base class implemenation
+		return "\nObject Type: Rectangle\nArea: " + to_string(GetArea());
 	}
 };
 #endif
