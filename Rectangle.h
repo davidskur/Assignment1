@@ -1,28 +1,26 @@
 #ifndef _RECTANGLE
 #define _RECTANGLE
 
-#include <iostream>
 #include "Shape.h"
 
 using namespace std;
 
 class Rectangle : public Shape {
 private:
-	double base, height, depth;
+	double dblBase, dblHeight;
 public:
-	Rectangle(double base, double height, double depth) { // parameterized constructor
-		this->base = base;
-		this->height = height;
-		this->depth = depth;
+	Rectangle(double dblBase, double dblHeight) { // parameterized constructor
+		this->dblBase = dblBase;
+		this->dblHeight = dblHeight;
 	}
-	double getVolume() { // exposed public method to calculate volume
-		if (isValidShape(base, height, depth))
-			return base * height * depth;
+	double GetArea() {
+		if (IsValidShape(dblBase, dblHeight, 1))
+			return dblBase * dblHeight;
 		return 0;
 	}
-	void printInfo() { // override base class 
+	void PrintInfo() { // override base class implemenation
 		cout << "\nObject Type: Rectangle";
-		cout << "\nVolume: " << getVolume() << "\n";
+		cout << "\nVolume: " << GetArea() << "\n";
 	}
 };
 #endif
