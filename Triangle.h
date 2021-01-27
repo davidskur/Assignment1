@@ -2,6 +2,7 @@
 #define _TRIANGLE
 
 #include <cmath>
+#include <string>
 #include "Shape.h"
 
 using namespace std;
@@ -15,12 +16,12 @@ public:
 		this->dblSide2 = dblSide2;
 	}
 	double GetHypotenuse() { // exposed public method to calculate hypotenuse
-		if (IsValidShape(dblSide1, dblSide2, 1)) return hypot(dblSide1, dblSide2);
+		if (IsValidShape(dblSide1, dblSide2, 1)) 
+			return hypot(dblSide1, dblSide2);
 		return 0;
 	}
-	void PrintInfo() { // override base class implemenation
-		cout << "\nObject Type: Triangle";
-		cout << "\nHypotenuse: " << GetHypotenuse() << "\n";
+	string GetInfo() { // override base class implemenation
+		return "\nObject Type: Triangle\nHypotenuse: " + to_string(GetHypotenuse());
 	}
 };
 #endif
