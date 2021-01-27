@@ -4,92 +4,116 @@
 #include "Triangle.h"
 #include "Trapezoid.h"
 #include "Rectangle.h"
+#include "Hexahedron.h"
 
 using namespace std;
 
 // function declaration
-void displayWelcome();
-double checkInput(string prompt);
+void DisplayWelcome();
+double CheckInput(string strPrompt);
 
 int main() {
 
 	// sequence container of base object pointers.
-	vector<Shape*> shapeVec;
+	vector<Shape*> shapeContainer;
 
 	// main program loop
-	bool runAgain;
+	bool bRunAgain;
 	do {
-		runAgain = false;
-		displayWelcome(); // for readability
+		bRunAgain = false;
+		DisplayWelcome(); // for readability
 
 		// get user input
-		int selection = checkInput("\nSelection: "); // possible data loss is acceptable here (double -> int)
+		int intSelection = CheckInput("\nSelection: "); // possible data loss is acceptable here (double -> int)
 
 		// decision logic
-		switch (selection) {
+		switch (intSelection) {
 		case 1: // triangle
 		{
-			double side1, side2;
+			double dblSide1, dblSide2;
 			cout << "\n--- Calculate a Hypotenuse ---\n";
-			side1 = checkInput("\nEnter triangle side 1: ");
-			side2 = checkInput("Enter triangle side 2: ");
+			dblSide1 = CheckInput("\nEnter triangle side 1: ");
+			dblSide2 = CheckInput("Enter triangle side 2: ");
 
 			// Create a new triangle object and add it to the collection
-			Triangle triangle(side1, side2);
-			shapeVec.push_back(&triangle); // insert obj ref. This is so counterintuitive compared to C#.
+			Triangle triangle(dblSide1, dblSide2);
+			shapeContainer.push_back(&triangle); // insert obj ref.
 
-			double hypot = triangle.getHypotenuse();
-			if (hypot > 0)
-				cout << "\nThe hypotenuse of the created right triangle is " << hypot << "\n";
+			double dblHypotenuse = triangle.GetHypotenuse();
+			if (dblHypotenuse > 0)
+				cout << "\nThe hypotenuse of the created right triangle is " << dblHypotenuse << "\n";
 			else
 				cout << "\nSupplied dimensions do NOT a triangle make!";
 			break;
 		}
 		case 2: // trapezoid
 		{
-			double base1, base2, height;
+			double dblBase1, dblBase2, dblHeight;
 			cout << "\n--- Calculate Trapezoid Area---\n";
-			base1 = checkInput("\nEnter base length: ");
-			base2 = checkInput("Enter a parallel base length: ");
-			height = checkInput("Enter the trapezoid's height: ");
+			dblBase1 = CheckInput("\nEnter base length: ");
+			dblBase2 = CheckInput("Enter a parallel base length: ");
+			dblHeight = CheckInput("Enter the trapezoid's height: ");
 
 			// Create a new trapezoid object and add it to the collection
-			Trapezoid trapezoid(base1, base2, height);
-			shapeVec.push_back(&trapezoid);
+			Trapezoid trapezoid(dblBase1, dblBase2, dblHeight);
+			shapeContainer.push_back(&trapezoid);
 
-			double area = trapezoid.getArea();
-			if (area > 0)
-				cout << "\nThe area of the created trapezoid is " << area << "\n";
+			double dblArea = trapezoid.GetArea();
+			if (dblArea > 0)
+				cout << "\nThe area of the created trapezoid is " << dblArea << "\n";
 			else
 				cout << "\nSupplied dimensions cannot be used to make a trapezoid!\n";
 			break;
 		}
-		case 3: // volumetric? rectangle
+		case 3: // Regular rectangle
 		{
-			double length, height, depth;
-			cout << "\n--- Calculate Rectangle Volume---\n";
-			length = checkInput("\nEnter the shape's length: ");
-			height = checkInput("Enter the shape's height: ");
-			depth = checkInput("Enter the shape's depth: ");
+			double dblLength, dblHeight;
+			cout << "\n--- Calculate Rectangle Area ---\n";
+			dblLength = CheckInput("\nEnter the shape's length: ");
+			dblHeight = CheckInput("Enter the shape's height: ");
 
 			// Create a new rectangle object and add it to the collection
-			Rectangle rectangle(length, height, depth);
-			shapeVec.push_back(&rectangle);
+			Rectangle rectangle(dblLength, dblHeight);
+			shapeContainer.push_back(&rectangle);
 
-			double volume = rectangle.getVolume();
-			if (volume > 0)
-				cout << "\nThe volume of the rectangle is " << volume << "\n";
+			double dblVolume = rectangle.GetArea();
+			if (dblVolume > 0)
+				cout << "\nThe area of the rectangle is " << dblVolume << "\n";
 			else
 				cout << "\nSupplied dimensions cannot be used to make a rectangle!\n";
 			break;
 		}
-		case 4:
+		case 4: // Rectangular hexahedron (cuboid). Assuming he meant 'volume' in the requirements given that it's a 3D figure.
+		{
+			double dblLength, dblHeight, dblDepth;
+			cout << "\n--- Calculate Rectangular Hexahedron Volume ---\n";
+			dblLength = CheckInput("\nEnter the shape's length: ");
+			dblHeight = CheckInput("Enter the shape's height: ");
+			dblDepth = CheckInput("Enter the shape's depth: ");
+
+			// Create a new hexahedron object and add it to the collection
+			Hexahedron hexahedron(dblLength, dblHeight, dblDepth);
+			shapeContainer.push_back(&hexahedron);
+
+			double dblVolume = hexahedron.GetVolume();
+			if (dblVolume > 0)
+				cout << "\nThe volume of the hexahedron is " << dblVolume << "\n";
+			else
+				cout << "\nSupplied dimensions cannot be used to make a hexahedron!\n";
+			break;
+		}
+		case 5:
 		{
 			cout << "\n----------- Shapes -----------\n";
-			cout << "\nShape Collection Size: " << shapeVec.size() << "\n";
-			for (Shape* shape : shapeVec)
-				shape->printInfo(); // polymorphic call to derived implementation
+			cout << "\nShape Collection Size: " << shapeContainer.size() << "\n";
+			for (Shape* shape : shapeContainer)
+				shape->PrintInfo(); // polymorphic call to derived implementation
 			break;
+		}
+		case 6:
+		{
+			cout << "\nHave a nice day!";
+			return 0; // could also #include <cstdlib> and call exit(0);
 		}
 		default:
 			cout << "\nUnknown selection!";
@@ -97,27 +121,25 @@ int main() {
 		} // end switch
 
 		// check for another run
-		string response;
-		cout << "\nRun again? ";
-		cin >> response;
-		if (response == "y" || response == "yes") runAgain = true;
+		string strResponse;
+		cout << "\nRun again? (y/n) ";
+		cin >> strResponse;
+		if (strResponse == "y" || strResponse == "yes") bRunAgain = true;
 
-	} while (runAgain); // end do-while
+	} while (bRunAgain); // end do-while
 
 	return 0; // end main
 }
-
 // functions
-double checkInput(string prompt) {
-	string input;
-	cout << prompt;
-	cin >> input;
-	return strtod(input.c_str(), NULL); // strtod doesn't throw exceptions
+double CheckInput(string strPrompt) {
+	string strInput;
+	cout << strPrompt;
+	cin >> strInput;
+	return strtod(strInput.c_str(), NULL); // strtod doesn't throw exceptions
 }
-void displayWelcome() {
-
+void DisplayWelcome() {
 	cout << "\n|=======================|\n";
 	cout << "|~~~~ Shape Creator ~~~~|\n";
 	cout << "|=======================|\n";
-	cout << "\nMake a selection:\n \n1) Triangle\n2) Trapezoid\n3) Rectangle\n4) Browse collection\n";
+	cout << "\nMake a selection:\n \n1) Triangle\n2) Trapezoid\n3) Rectangle\n4) Rectangular Hexahedron (Cuboid)\n5) Browse Collection\n6) Exit\n";
 }
