@@ -1,6 +1,7 @@
 #ifndef _TRAPEZOID
 #define _TRAPEZOID
 
+#include <string>
 #include "Shape.h"
 
 using namespace std;
@@ -19,9 +20,8 @@ public:
 			return (0.5) * (dblBase1 + dbleBase2) * dblHeight;
 		return 0;
 	}
-	void PrintInfo() { // override base class implemenation
-		cout << "\nObject Type: Trapezoid";
-		cout << "\nArea: " << GetArea() << "\n";
+	string GetInfo() {
+		return "\nObject Type: Trapezoid\nArea: " + to_string(GetArea());
 	}
 };
 #endif
