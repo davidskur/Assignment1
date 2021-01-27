@@ -1,6 +1,8 @@
 #ifndef _SHAPE
 #define _SHAPE
 
+#include <string>
+
 using namespace std;
 
 // abstract base class
@@ -13,9 +15,8 @@ public:
 			return false;
 		return true;
 	}
-	virtual void PrintInfo() {
-		cout << "\nObject Type: Basic Shape";
-		cout << "\nDimensions: None";
+	virtual string GetInfo() {
+		return "\nObject Type: Shape";
 	}
 };
 #endif
